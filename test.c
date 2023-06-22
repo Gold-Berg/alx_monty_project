@@ -125,6 +125,14 @@ int main(int argc, char *argv[])
                 {
                         pall(&stack, line_number);
                 }
+		else
+		{
+			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+			free(line);
+			free_stack(stack);
+			fclose(file);
+			exit(EXIT_FAILURE);
+		}
                 free(line);
                 line = NULL;
                 len = 0;
