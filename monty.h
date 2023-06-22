@@ -31,4 +31,5 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+char *__strtok(char *string, const char *deli, char **save_ptr);
 #endif

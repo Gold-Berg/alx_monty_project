@@ -84,6 +84,7 @@ int main(int argc, char *argv[])
 	char *line = NULL;
 	char *opcode;
 	char *arg;
+	char *save_ptr;
         size_t len = 0;
         unsigned int line_number = 0;
 	FILE *file;
@@ -105,11 +106,11 @@ int main(int argc, char *argv[])
         while (custom_getline(&line, &len, file) != (size_t)-1)
         {
                 line_number++;
-                opcode = strtok(line, " \t\n");
+                opcode = __strtok(line, " \t\n", &save_ptr);
 
                 if (opcode != NULL && strcmp(opcode, "push") == 0)
                 {
-                        arg = strtok(NULL, " \t\n");
+                        arg = __strtok(NULL, " \t\n", &save_ptr);
                         if (arg == NULL || atoi(arg) == 0)
                         {
                                 fprintf(stderr, "L%u: usage: push integer\n", line_number);
