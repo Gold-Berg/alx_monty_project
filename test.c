@@ -42,11 +42,11 @@ void free_stack(stack_t *stack)
         }
 }
 
-size_t custom_getline(char **lineptr, size_t *n, FILE *stream)
+ssize_t custom_getline(char **lineptr, size_t *n, FILE *stream)
 {
         size_t pos = 0;
-	char *new_lineptr;
         int c;
+	char *new_lineptr;
 
         if (*lineptr == NULL || *n == 0)
         {
@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
                 exit(EXIT_FAILURE);
         }
 
-        while (custom_getline(&line, &len, file) != (size_t)-1)
+        while (custom_getline(&line, &len, file) != (ssize_t)-1)
         {
                 line_number++;
                 opcode = __strtok(line, " \t\n", &save_ptr);
