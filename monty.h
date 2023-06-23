@@ -36,4 +36,5 @@ typedef struct instruction_s
 char *__strtok(char *string, const char *deli, char **save_ptr);
 void free_stack(stack_t *stack);
 void pint(stack_t **stack, unsigned int line_number);
+ssize_t custom_getline(char **lineptr, size_t *n, FILE *stream);
 #endif

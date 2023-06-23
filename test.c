@@ -41,41 +41,21 @@ void free_stack(stack_t *stack)
                 free(temp);
         }
 }
-
-ssize_t custom_getline(char **lineptr, size_t *n, FILE *stream)
+/**
+ * pint - Prints the value at the top of the stack
+ * @stack: Double pointer to the stack
+ * @line_number: Line number of the instruction in the file
+ */
+void pint(stack_t **stack, unsigned int line_number)
 {
-        size_t pos = 0;
-        int c;
-	char *new_lineptr;
+    if (*stack == NULL)
+    {
+        fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
+        free_stack(*stack);
+        exit(EXIT_FAILURE);
+    }
 
-        if (*lineptr == NULL || *n == 0)
-        {
-                *n = 128;
-                *lineptr = malloc(*n * sizeof(char));
-                if (*lineptr == NULL)
-                        return -1;
-        }
-
-        while ((c = fgetc(stream)) != EOF)
-        {
-                if (pos >= *n - 1)
-                {
-                        *n *= 2;
-                        new_lineptr = realloc(*lineptr, *n * sizeof(char));
-                        if (new_lineptr == NULL)
-                                return -1;
-                        *lineptr = new_lineptr;
-                }
-
-                (*lineptr)[pos++] = c;
-
-                if (c == '\n')
-                        break;
-        }
-
-        (*lineptr)[pos] = '\0';
-
-        return pos;
+    printf("%d\n", (*stack)->n);
 }
 
 int main(int argc, char *argv[])
