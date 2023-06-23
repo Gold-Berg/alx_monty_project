@@ -34,4 +34,6 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 char *__strtok(char *string, const char *deli, char **save_ptr);
+void free_stack(stack_t *stack);
+void pint(stack_t **stack, unsigned int line_number);
 #endif
